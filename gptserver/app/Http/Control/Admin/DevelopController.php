@@ -4,26 +4,23 @@ namespace App\Http\Control\Admin;
 
 use App\Http\Dto\Config\AiChatConfigDto;
 use App\Http\Dto\Config\SmsConfigDto;
-use App\Http\Dto\Config\WebsiteConfigDto;
-use App\Http\Resource\Admin\DevelopPackageResource;
-use App\Http\Service\DevelopService;
+use App\Http\Service\GPTLinkChatService;
 use App\Model\Config;
 use Cblink\HyperfExt\BaseController;
 use GuzzleHttp\Exception\GuzzleException;
-use Psr\SimpleCache\InvalidArgumentException;
+use Psr\Http\Message\ResponseInterface;
 
 class DevelopController extends BaseController
 {
     /**
      * 获取开发者套餐信息
      *
-     * @param DevelopService $service
-     * @return DevelopPackageResource|\Psr\Http\Message\ResponseInterface
+     * @param GPTLinkChatService $service
+     * @return ResponseInterface
      * @throws GuzzleException
-     * @throws InvalidArgumentException
      * @throws \Throwable
      */
-    public function getPackage(DevelopService $service)
+    public function getPackage(GPTLinkChatService $service)
     {
         $data = [];
 
@@ -31,26 +28,42 @@ class DevelopController extends BaseController
 
         /* @var AiChatConfigDto $aiChat  */
         $aiChat = Config::toDto(Config::AI_CHAT);
-
         if (AiChatConfigDto::GPTLINK == $aiChat->channel) {
             $response = $service->getPackage();
-
-            if ($response['err_code'] == 0) {
-                $data['chat'] = $response['data'] ?: $default;
-            }
+            $data['chat'] = $response ?: $default;
         }
 
         /* @var SmsConfigDto $sms  */
         $sms = Config::toDto(Config::SMS);
-
         if (AiChatConfigDto::GPTLINK == $sms->channel) {
-            $response = $service->getPackage(['type' => 3]);
-
-            if ($response['err_code'] == 0) {
-                $data['sms'] = $response['data'] ?: $default;
-            }
+            $response = make(GPTLinkChatService::class, [$sms->gptlink['api_key']])->getPackage(['type' => 3]);
+            $data['sms'] = $response ?: $default;
         }
 
         return $this->success($data);
+    }
+
+    /**
+     * 获取个人信息
+     * @param GPTLinkChatService $service
+     * @return ResponseInterface
+     * @throws GuzzleException
+     */
+    public function getProfile(GPTLinkChatService $service)
+    {
+        $result = $service->getProfile();
+        return $this->success($result);
+    }
+
+    /**
+     * 获取开发者消费记录
+     * @param GPTLinkChatService $service
+     * @return ResponseInterface
+     * @throws GuzzleException
+     */
+    public function getRcord(GPTLinkChatService $service)
+    {
+        $result = $service->getRecord();
+        return $this->success($result);
     }
 }

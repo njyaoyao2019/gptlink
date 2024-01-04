@@ -70,6 +70,22 @@ Router::addGroup('/admin', function () {
         Router::put('/{id}', [Api\Admin\CdkController::class, 'update']);
     });
 
+    // 分销相关
+    Router::addGroup('/salesman', function () {
+        // 提现记录
+        Router::addGroup('/withdraw', function () {
+            Router::get('', [Api\Admin\WithdrawController::class, 'index']);
+            Router::post('/{id}/agree', [Api\Admin\WithdrawController::class, 'agree']);
+            Router::post('/{id}/refuse', [Api\Admin\WithdrawController::class, 'refuse']);
+            Router::post('/{id}/transfer', [Api\Admin\WithdrawController::class, 'transfer']);
+        });
+
+        // 提现记录
+        Router::get('/order', [Api\Admin\SalesmanController::class, 'order']);
+        // 分销员
+        Router::get('/user', [Api\Admin\SalesmanController::class, 'index']);
+        Router::get('/user/{id}', [Api\Admin\SalesmanController::class, 'show']);
+    });
 
     Router::addGroup('/upload', function () {
         Router::get('/qiniu/token', [Api\Common\UploadController::class, 'getQiniuToken']);
@@ -78,7 +94,10 @@ Router::addGroup('/admin', function () {
 
     // 开发者套餐
     Router::addGroup('/develop', function () {
+        // 开发者个人信息
+        Router::get('/profile', [Api\Admin\DevelopController::class, 'getProfile']);
         Router::get('/package', [Api\Admin\DevelopController::class, 'getPackage']);
+        Router::get('/record', [Api\Admin\DevelopController::class, 'getRcord']);
     });
 
     // 统计

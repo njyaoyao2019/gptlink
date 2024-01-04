@@ -1,8 +1,8 @@
 <div align="center">
   <h1 align="center">GPTLink</h1>
-  <p> 只需简单几步，即可快速搭建可商用的 ChatGPT 站点。</p>
+  <p> 只需简单几步，即可快速搭建可用的 AI对话 站点。</p>
 
-  [体验地址](https://gpt-link.com/?shareOpenId=mjOfmdjyCBEku7fY) · [演示图片](./docs/show/README.md) · [反馈](https://github.com/gptlink/gptlink/issues) · [微信加群](./docs/images/qrcode.png)
+  [体验地址](./DEMO.md) · [演示图片](./docs/show/README.md) · [反馈](https://github.com/gptlink/gptlink/issues) · [微信加群](./docs/images/qrcode.png)
 
   [商务合作](./docs/images/qrcode.png) · [关注公众号](./docs/images/official.jpg) · [打赏开发者](./docs/images/payment.jpeg)
 
@@ -22,8 +22,8 @@
 ## 开始使用
 
 1. 项目基于 PHP (Hyperf) + Vue 开发，推荐使用 Docker 进行部署；
-2. 准备好一个 API Key，推荐使用 [GPTLINK](https://gpt-link.com) Key；
-   - [GPTLINK](https://gpt-link.com) Key ，注册完成之后进入个人中心申请开发者后获取 API Key，过程非常简单，无需审核，接口无需代理；
+2. 准备好一个 API Key，推荐使用 [GPTLINK](http://gpt-link.cn) Key；
+   - [GPTLINK](http://gpt-link.cn) Key ，注册完成之后进入个人中心申请开发者后获取 API Key，过程非常简单，无需审核，接口无需代理；
    - OpenAi 官方 Key；
 3. 微信相关应用（非必须）
    - [微信网站应用](https://developers.weixin.qq.com/doc/oplatform/Website_App/WeChat_Login/Wechat_Login.html)
@@ -67,7 +67,6 @@
 - [x] 账号密码登录
 - [x] 线下收款配置
 - [x] 兑换码
-- [ ] 对话记录
 - [ ] AI 生图
 - [ ] 分销
 - [ ] 统计视图

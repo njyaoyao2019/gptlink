@@ -1,23 +1,15 @@
 <?php
-
-
 return [
 // yap请求地址
-    'base_url' => 'http://yapi.cblink.net/',
+    'base_url' => '',
     // 文档合并方式，"normal"(普通模式) , "good"(智能合并), "merge"(完全覆盖)
     'merge' => 'merge',
 
     'base_path' => BASE_PATH . '/runtime/yapi/',
 
     'config' => [
-        'default' => [
-            'id' => '815',
-            'token' => '7f5e7d6ab11a25c6f3c81a8d7782ce5b69fe0c4de68125d2ce9dbc7e7a57a192'
-        ],
-        'admin' => [
-            'id' => '808',
-            'token' => 'c4edb3870a73acfc98e53374fe5acff9a36a996bccae60467b606f6dc1a63243'
-        ]
+        'default' => [],
+        'admin' => []
     ],
 
     'public' => [

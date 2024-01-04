@@ -25,5 +25,5 @@ return [
 		'domain' => env('QINIU_DOMAIN', ''), // 七牛云domain
 		'path' => base64_decode(env('QINIU_PATH', '')), // 七牛云上传路径
 		'expires' => env('QINIU_EXPIRES', 600), // 七牛云上传token过期时间
-	],
+	]
 ];
